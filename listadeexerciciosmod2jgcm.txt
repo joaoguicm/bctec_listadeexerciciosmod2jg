@@ -1,0 +1,501 @@
+// 1A
+
+public class SequenciaA {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 100; i++) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+// 1B
+
+public class SequenciaB {
+    public static void main(String[] args) {
+        for (int i = 100; i >= 1; i--) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+// 1C
+
+public class SequenciaC {
+    public static void main(String[] args) {
+        for (int i = 0; i <= 100; i += 2) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+// 1D
+
+public class SequenciaD {
+    public static void main(String[] args) {
+        for (int i = 0; i < 100; i += 3) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+// 1E
+
+public class SequenciaE {
+    public static void main(String[] args) {
+        for (int i = 0; i <= 100; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+
+
+// 1F
+
+public class SequenciaF {
+    public static void main(String[] args) {
+        for (int i = 0; i <= 1000; i++) {
+            if (i % 4 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+
+
+// 2)
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ArrayManipulation {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o tamanho do array: ");
+        int n = scanner.nextInt();
+        int[] array = new int[n];
+
+        System.out.println("Digite os elementos do array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // a) 
+        int soma = 0;
+        for (int num : array) {
+            soma += num;
+        }
+        System.out.println("Soma dos elementos: " + soma);
+
+        
+		
+		// b) 
+        int maior = array[0];
+        int menor = array[0];
+        for (int num : array) {
+            if (num > maior) maior = num;
+            if (num < menor) menor = num;
+        }
+        System.out.println("Maior valor: " + maior);
+        System.out.println("Menor valor: " + menor);
+
+        
+		
+		// c) 
+        double media = (double) soma / n;
+        System.out.println("Média dos elementos: " + media);
+
+       
+
+	   // d) 
+        Arrays.sort(array);
+        double mediana;
+        if (n % 2 == 0) {
+            mediana = ((double) array[n / 2 - 1] + array[n / 2]) / 2;
+        } else {
+            mediana = array[n / 2];
+        }
+        System.out.println("Mediana dos elementos: " + mediana);
+
+        
+		
+		// e) 
+        int moda = array[0];
+        int maxCont = 0;
+        for (int i = 0; i < array.length; i++) {
+            int cont = 0;
+            for (int j = 0; j < array.length; j++) {
+                if (array[j] == array[i]) cont++;
+            }
+            if (cont > maxCont) {
+                maxCont = cont;
+                moda = array[i];
+            }
+        }
+        if (maxCont > 1) {
+            System.out.println("Moda dos elementos: " + moda);
+        } else {
+            System.out.println("Não há moda.");
+        }
+    }
+}
+
+
+
+// 3)
+
+
+import java.util.Scanner;
+
+public class Palindromo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite uma palavra: ");
+        String palavra = scanner.nextLine();
+        
+        char[] letras = palavra.toCharArray();
+        boolean ehPalindromo = true;
+
+        int n = letras.length;
+        for (int i = 0; i < n / 2; i++) {
+            if (letras[i] != letras[n - 1 - i]) {
+                ehPalindromo = false;
+                break;
+            }
+        }
+
+        if (ehPalindromo) {
+            System.out.println("A palavra é um palíndromo.");
+        } else {
+            System.out.println("A palavra não é um palíndromo.");
+        }
+    }
+}
+
+
+
+// 4) 
+
+
+import java.util.Scanner;
+
+public class ImpostoRenda {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o valor do salário mínimo: ");
+        double salarioMinimo = scanner.nextDouble();
+
+        System.out.print("Digite o número de dependentes: ");
+        int dependentes = scanner.nextInt();
+
+        System.out.print("Digite o salário do funcionário: ");
+        double salarioFuncionario = scanner.nextDouble();
+
+        System.out.print("Digite a taxa de imposto já paga: ");
+        double taxaImposto = scanner.nextDouble();
+
+        double impostoBruto = 0;
+        if (salarioFuncionario > 12 * salarioMinimo) {
+            impostoBruto = 0.20 * salarioFuncionario;
+        } else if (salarioFuncionario > 5 * salarioMinimo) {
+            impostoBruto = 0.08 * salarioFuncionario;
+        }
+
+        double descontoDependentes = dependentes * 0.02 * impostoBruto;
+        impostoBruto -= descontoDependentes;
+
+        double taxaAdicional = 0.04 * impostoBruto;
+        double impostoFinal = impostoBruto + taxaAdicional;
+
+        System.out.println("Imposto de renda a pagar: " + (impostoFinal - taxaImposto));
+    }
+}
+
+
+// 5)
+
+
+import java.util.Scanner;
+
+public class VogaisConsoantes {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Digite o número de nomes: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();  
+        
+        String[] nomes = new String[n];
+
+        System.out.println("Digite os nomes:");
+        for (int i = 0; i < n; i++) {
+            nomes[i] = scanner.nextLine();
+        }
+
+        for (String nome : nomes) {
+            System.out.println("Nome: " + nome);
+            for (char c : nome.toCharArray()) {
+                if (ehVogal(c)) {
+                    System.out.println(c + " é uma vogal.");
+                } else if (Character.isLetter(c)) {
+                    System.out.println(c + " é uma consoante.");
+                }
+            }
+        }
+    }
+
+    public static boolean ehVogal(char c) {
+        c = Character.toLowerCase(c);
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+}
+
+
+// 6) 
+
+
+import java.util.Scanner;
+
+public class DecaimentoRadioativo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite a massa inicial em gramas: ");
+        double massaInicial = scanner.nextDouble();
+
+        double massaFinal = massaInicial;
+        int tempoSegundos = 0;
+
+        while (massaFinal >= 0.5) {
+            massaFinal /= 2;
+            tempoSegundos += 50;
+        }
+
+        int horas = tempoSegundos / 3600;
+        int minutos = (tempoSegundos % 3600) / 60;
+        int segundos = tempoSegundos % 60;
+
+        System.out.println("Massa inicial: " + massaInicial + " gramas");
+        System.out.println("Massa final: " + massaFinal + " gramas");
+        System.out.println("Tempo necessário: " + horas + " horas, " + minutos + " minutos, " + segundos + " segundos");
+    }
+}
+
+
+
+// 7)
+
+
+import java.util.Scanner;
+
+public class OperacoesVetores {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int tamanho = 3; 
+
+        int[][] vetores = new int[3][tamanho];
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Digite os elementos do vetor " + (i + 1) + ":");
+            for (int j = 0; j < tamanho; j++) {
+                vetores[i][j] = scanner.nextInt();
+            }
+        }
+
+        int[] somas = new int[3];
+        int[] produtos = new int[3];
+        double[] medias = new double[3];
+
+        for (int i = 0; i < 3; i++) {
+            somas[i] = calcularSoma(vetores[i]);
+            produtos[i] = calcularProduto(vetores[i]);
+            medias[i] = calcularMedia(vetores[i]);
+            System.out.println("Vetor " + (i + 1) + ": Soma = " + somas[i] + ", Produto = " + produtos[i] + ", Média = " + medias[i]);
+        }
+
+        int somaTotal = calcularSoma(somas);
+        double mediaTotal = calcularMedia(medias);
+        int produtoTotal = calcularProduto(produtos);
+
+        System.out.println("Soma de todas as somas: " + somaTotal);
+        System.out.println("Média de todas as médias: " + mediaTotal);
+        System.out.println("Produto de todos os produtos: " + produtoTotal);
+    }
+
+    public static int calcularSoma(int[] vetor) {
+        int soma = 0;
+        for (int num : vetor) {
+            soma += num;
+        }
+        return soma;
+    }
+
+    public static double calcularMedia(int[] vetor) {
+        return (double) calcularSoma(vetor) / vetor.length;
+    }
+
+    public static int calcularProduto(int[] vetor) {
+        int produto = 1;
+        for (int num : vetor) {
+            produto *= num;
+        }
+        return produto;
+    }
+}
+
+
+
+// 8)
+
+
+import java.util.Scanner;
+
+public class VotacaoFuncionarioMesSimples {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o número de funcionários: ");
+        int numFuncionarios = scanner.nextInt();
+        scanner.nextLine(); 
+
+        String[] funcionarios = new String[numFuncionarios];
+        int[] votos = new int[numFuncionarios];
+
+        System.out.println("Digite os nomes dos funcionários:");
+        for (int i = 0; i < numFuncionarios; i++) {
+            funcionarios[i] = scanner.nextLine();
+        }
+
+        System.out.print("Digite o número de votos: ");
+        int numVotantes = scanner.nextInt();
+        scanner.nextLine(); 
+
+        for (int i = 0; i < numVotantes; i++) {
+            System.out.print("Digite o nome do funcionário em quem você quer votar: ");
+            String voto = scanner.nextLine();
+            boolean votoValido = false;
+
+            for (int j = 0; j < numFuncionarios; j++) {
+                if (funcionarios[j].equalsIgnoreCase(voto)) {
+                    votos[j]++;
+                    votoValido = true;
+                    break;
+                }
+            }
+
+            if (!votoValido) {
+                System.out.println("Voto inválido.");
+            }
+        }
+
+        int vencedorIndex = determinarVencedor(votos);
+        System.out.println("O funcionário do mês é: " + funcionarios[vencedorIndex] + " com " + votos[vencedorIndex] + " votos.");
+    }
+
+    public static int determinarVencedor(int[] votos) {
+        int maxVotos = 0;
+        int index = 0;
+        for (int i = 0; i < votos.length; i++) {
+            if (votos[i] > maxVotos) {
+                maxVotos = votos[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+}
+
+
+
+// 9)
+
+
+
+import java.util.Scanner;
+
+public class GerenciamentoEstoqueSimples {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o número de produtos: ");
+        int numProdutos = scanner.nextInt();
+        scanner.nextLine(); 
+
+        String[] nomesProdutos = new String[numProdutos];
+        int[] quantidadesEstoque = new int[numProdutos];
+
+        for (int i = 0; i < numProdutos; i++) {
+            System.out.print("Digite o nome do produto " + (i + 1) + ": ");
+            nomesProdutos[i] = scanner.nextLine();
+            System.out.print("Digite a quantidade em estoque do produto " + (i + 1) + ": ");
+            quantidadesEstoque[i] = scanner.nextInt();
+            scanner.nextLine(); 
+        }
+
+        boolean sair = false;
+        while (!sair) {
+            System.out.println("Escolha uma opção:");
+            System.out.println("1. Consultar quantidade de produto");
+            System.out.println("2. Atualizar estoque");
+            System.out.println("3. Sair");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (opcao) {
+                case 1:
+                    consultarEstoque(nomesProdutos, quantidadesEstoque, scanner);
+                    break;
+                case 2:
+                    atualizarEstoque(nomesProdutos, quantidadesEstoque, scanner);
+                    break;
+                case 3:
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
+    }
+
+    public static void consultarEstoque(String[] nomesProdutos, int[] quantidadesEstoque, Scanner scanner) {
+        System.out.print("Digite o nome do produto: ");
+        String nomeProduto = scanner.nextLine();
+
+        for (int i = 0; i < nomesProdutos.length; i++) {
+            if (nomesProdutos[i].equalsIgnoreCase(nomeProduto)) {
+                System.out.println("Quantidade em estoque de " + nomeProduto + ": " + quantidadesEstoque[i]);
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado.");
+    }
+
+    public static void atualizarEstoque(String[] nomesProdutos, int[] quantidadesEstoque, Scanner scanner) {
+        System.out.print("Digite o nome do produto: ");
+        String nomeProduto = scanner.nextLine();
+
+        for (int i = 0; i < nomesProdutos.length; i++) {
+            if (nomesProdutos[i].equalsIgnoreCase(nomeProduto)) {
+                System.out.print("Digite a nova quantidade em estoque: ");
+                quantidadesEstoque[i] = scanner.nextInt();
+                scanner.nextLine(); 
+                System.out.println("Estoque atualizado com sucesso!");
+                return;
+            }
+        }
+        System.out.println("Produto não encontrado.");
+    }
+}
+
+
+
